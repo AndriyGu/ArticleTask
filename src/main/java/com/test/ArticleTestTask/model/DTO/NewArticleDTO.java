@@ -1,13 +1,13 @@
-package com.test.ArticleTestTask.model;
+package com.test.ArticleTestTask.model.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.test.ArticleTestTask.model.Account;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name="article")
-public class Article {
+public class NewArticleDTO {
 
     /**
      * To create an article the user should provide a
@@ -17,36 +17,19 @@ public class Article {
      * and date for publishing.
      */
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private String title;
-
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "accountsId")
-    private Account account;
-
-    @Lob
     private String content;
-
     private String autor;
     private LocalDateTime publicationDate;
 
-    public Article() {
+    public NewArticleDTO() {
     }
 
-    public Article(String title, Account account, String content, String autor, LocalDateTime publicationDate) {
+    public NewArticleDTO(String title, String content, String autor, LocalDateTime publicationDate) {
         this.title = title;
-        this.account = account;
         this.content = content;
         this.autor = autor;
         this.publicationDate = publicationDate;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getTitle() {
@@ -55,14 +38,6 @@ public class Article {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     public String getContent() {
