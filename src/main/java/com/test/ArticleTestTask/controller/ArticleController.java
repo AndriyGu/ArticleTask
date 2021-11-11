@@ -22,10 +22,10 @@ public class ArticleController {
 
     //add article
     @Operation(summary = "add article")
-    @PostMapping("/updateMenteeByEmail")
-    public ResponseEntity<String> updateMenteeByToken(@RequestBody NewArticleDTO request,
+    @PostMapping("/addNewArticle")
+    public ResponseEntity<String> addNewArticle(@RequestBody NewArticleDTO request,
                                                       HttpServletRequest req) {
-
+        //TODO create wey to send message to user when date is wrong
         return articleService.addNewArticle(request, req);
     }
 }

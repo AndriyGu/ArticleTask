@@ -3,6 +3,7 @@ package com.test.ArticleTestTask.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -32,12 +33,12 @@ public class Article {
     private String content;
 
     private String autor;
-    private LocalDateTime publicationDate;
+    private LocalDate publicationDate;
 
     public Article() {
     }
 
-    public Article(String title, Account account, String content, String autor, LocalDateTime publicationDate) {
+    public Article(String title, Account account, String content, String autor, LocalDate publicationDate) {
         this.title = title;
         this.account = account;
         this.content = content;
@@ -81,11 +82,11 @@ public class Article {
         this.autor = autor;
     }
 
-    public LocalDateTime getPublicationDate() {
+    public LocalDate getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(LocalDateTime publicationDate) {
+    public void setPublicationDate(LocalDate publicationDate) {
         this.publicationDate = publicationDate;
     }
 }

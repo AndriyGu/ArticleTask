@@ -72,6 +72,13 @@ public class JwtProvider {
         return claims.getSubject();
     }
 
+
+    public int getIdFromToken(String token) {
+        Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
+        String temp= String.valueOf(claims.get("id"));
+        return Integer.parseInt(temp);
+    }
+
     public String getTokenFromRequest(HttpServletRequest request) {
         return request.getHeader(header);
     }
