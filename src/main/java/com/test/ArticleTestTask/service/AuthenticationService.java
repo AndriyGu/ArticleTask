@@ -48,8 +48,6 @@ public class AuthenticationService {
         if (account == null) {
             throw new AuthenticationException("Email is incorrect");
         }
-
-
         if (new BCryptPasswordEncoder().matches(request.getPassword(), account.getPassword())) {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                     request.getEmail(),
@@ -58,7 +56,6 @@ public class AuthenticationService {
             SecurityContextHolder.getContext().setAuthentication(authentication);
             return jwtProvider.generateAuthToken(authentication);
         }
-
         throw new AuthenticationException("Password is incorrect");
     }
 

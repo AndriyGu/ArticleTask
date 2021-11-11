@@ -13,7 +13,7 @@ public class OnUserLogoutSuccessEvent extends ApplicationEvent {
     private final Date time;
 
 
-    public OnUserLogoutSuccessEvent(String email,String token) {
+    public OnUserLogoutSuccessEvent(String email, String token) {
         super(email);
         this.email = email;
         this.token = token;

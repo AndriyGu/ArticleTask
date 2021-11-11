@@ -17,6 +17,6 @@ public class OnUserLogoutSuccessEventListener implements ApplicationListener<OnU
 
     @Override
     public void onApplicationEvent(OnUserLogoutSuccessEvent event) {
-            tokenCache.markLogoutEventForToken(event);
+        tokenCache.markLogoutEventForToken(event);
     }
 }

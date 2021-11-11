@@ -2,29 +2,41 @@ package com.test.ArticleTestTask.model.DTO;
 
 import java.time.LocalDate;
 
-public class NewArticleDTO {
+public class ArticleDataDTO {
 
-    /**
-     * To create an article the user should provide a
-     * title,
-     * author,
-     * the content
-     * and date for publishing.
-     */
-
+    int idArticle;
+    int publisherId;
     private String title;
     private String content;
     private String autor;
     private LocalDate publicationDate;
 
-    public NewArticleDTO() {
+    public ArticleDataDTO() {
     }
 
-    public NewArticleDTO(String title, String content, String autor, LocalDate publicationDate) {
+    public ArticleDataDTO(int idArticle, int publisherId, String title, String content, String autor, LocalDate publicationDate) {
+        this.idArticle = idArticle;
+        this.publisherId = publisherId;
         this.title = title;
         this.content = content;
         this.autor = autor;
         this.publicationDate = publicationDate;
+    }
+
+    public int getIdArticle() {
+        return idArticle;
+    }
+
+    public void setIdArticle(int idArticle) {
+        this.idArticle = idArticle;
+    }
+
+    public int getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
     }
 
     public String getTitle() {

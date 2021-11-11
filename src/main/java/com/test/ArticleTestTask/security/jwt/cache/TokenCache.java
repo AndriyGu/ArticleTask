@@ -17,7 +17,7 @@ public class TokenCache {
     private JwtProvider jwtProvider;
 
     @Autowired
-    public TokenCache(JwtProvider jwtProvider){
+    public TokenCache(JwtProvider jwtProvider) {
         this.jwtProvider = jwtProvider;
         this.tokenEventMap = ExpiringMap.builder()
                 .variableExpiration()
@@ -25,14 +25,14 @@ public class TokenCache {
                 .build();
     }
 
-    public void markLogoutEventForToken(OnUserLogoutSuccessEvent event){
+    public void markLogoutEventForToken(OnUserLogoutSuccessEvent event) {
         String token = event.getToken();
-        if(tokenEventMap.containsKey(token)){
+        if (tokenEventMap.containsKey(token)) {
             System.out.println("Token is already present in cache");
-        }else{
+        } else {
             Date tokenExpireDate = jwtProvider.getExpireDateFromToken(token);
             long ttlForToken = getTTLForToken(tokenExpireDate);
-            tokenEventMap.put(token,event,ttlForToken, TimeUnit.SECONDS);
+            tokenEventMap.put(token, event, ttlForToken, TimeUnit.SECONDS);
         }
     }
 
