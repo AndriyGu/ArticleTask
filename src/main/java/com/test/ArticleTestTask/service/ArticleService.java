@@ -57,8 +57,7 @@ public class ArticleService {
             DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
             System.out.println("Validating " + date + " as date");
             df.parse(date);
-        }
-        catch (ParseException ex) {
+        } catch (ParseException ex) {
             // not yyyy-mm-dd date.
             System.out.println(": Bad");
             System.out.println(date + " cannot be parsed as a date. format: yyyy-mm-dd.");

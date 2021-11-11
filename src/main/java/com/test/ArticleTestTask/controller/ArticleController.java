@@ -24,7 +24,7 @@ public class ArticleController {
     @Operation(summary = "add article")
     @PostMapping("/addNewArticle")
     public ResponseEntity<String> addNewArticle(@RequestBody NewArticleDTO request,
-                                                      HttpServletRequest req) {
+                                                HttpServletRequest req) {
         //TODO create wey to send message to user when date is wrong
         return articleService.addNewArticle(request, req);
     }

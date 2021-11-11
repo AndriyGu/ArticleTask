@@ -46,75 +46,8 @@ public class AdminController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("getArticles/{currentPage}/{pageSize}")
     ResponseEntity<Page<ArticleDataDTO>> getArticleFroLastWeek(@PathVariable("currentPage") int currentPage,
-                                               @PathVariable("pageSize") int pageSize
+                                                               @PathVariable("pageSize") int pageSize
     ) {
-
-        LocalDate dateBefore = (LocalDate.now()).minusDays(7);
-        LocalDate dateNow = (LocalDate.now());
-
-        List<Article> articleList = articleRepository.findArticlesByLastWeek(dateNow, dateBefore);
-        List<ArticleDataDTO> articleDataDTOList = new ArrayList<>();
-
-        if (articleList.size() > 0) {
-            for (Article temp : articleList) {
-                ArticleDataDTO tempDTO = new ArticleDataDTO();
-                tempDTO.setIdArticle(temp.getId());
-                tempDTO.setPublisherId(temp.getAccount().getId());
-                tempDTO.setTitle(temp.getTitle());
-                tempDTO.setAutor(temp.getAutor());
-                tempDTO.setContent(temp.getContent());
-                tempDTO.setPublicationDate(temp.getPublicationDate());
-                articleDataDTOList.add(tempDTO);
-            }
-
-
-            Page<ArticleDataDTO> smallList = adminService.findPaginated(articleDataDTOList, PageRequest.of(currentPage - 1, pageSize));
-
-            return new ResponseEntity<Page<ArticleDataDTO>>(smallList, HttpStatus.OK);
-
-        }
-        //else
-            List<ArticleDataDTO> list = new ArrayList<>();
-            Page<ArticleDataDTO> smallDTOPagination = new PageImpl<ArticleDataDTO>(list, PageRequest.of(currentPage, pageSize), articleDataDTOList.size());
-            return new ResponseEntity<Page<ArticleDataDTO>>(smallDTOPagination, HttpStatus.NOT_FOUND);
-
+        return adminService.getArticleFroLastWeek(currentPage, pageSize);
     }
-
-
-    @Operation(summary = "get articles")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("getArticles/")
-    ResponseEntity<List<ArticleDataDTO>> getArti() {
-
-        LocalDate dateBefore = (LocalDate.now()).minusDays(PERIOD);
-        LocalDate dateNow = (LocalDate.now());
-
-        List<Article> articleList = articleRepository.findArticlesByLastWeek(dateNow, dateBefore);
-        List<ArticleDataDTO> articleDataDTOList = new ArrayList<>();
-
-        if (articleList.size() > 0) {
-            for (Article temp : articleList) {
-                ArticleDataDTO tempDTO = new ArticleDataDTO();
-
-                tempDTO.setIdArticle(temp.getId());
-                tempDTO.setPublisherId(temp.getAccount().getId());
-                tempDTO.setTitle(temp.getTitle());
-                tempDTO.setAutor(temp.getAutor());
-                tempDTO.setContent(temp.getContent());
-                tempDTO.setPublicationDate(temp.getPublicationDate());
-
-                articleDataDTOList.add(tempDTO);
-            }
-
-
-
-            return new ResponseEntity<List<ArticleDataDTO>>(articleDataDTOList, HttpStatus.OK);
-
-        }
-        //else
-        return new ResponseEntity<List<ArticleDataDTO>>(articleDataDTOList, HttpStatus.NOT_FOUND);
-
-    }
-
-
 }

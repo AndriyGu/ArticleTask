@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="article")
+@Table(name = "article")
 public class Article {
 
     /**

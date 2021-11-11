@@ -28,14 +28,14 @@ public class JwtFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         String token = jwtProvider.getTokenFromRequest((HttpServletRequest) servletRequest);
-        try{
+        try {
             if (token != null && jwtProvider.validateToken(token)) {
                 String userLogin = jwtProvider.getLoginFromToken(token);
                 CustomUserDetails customUserDetails = customUserDetailsService.loadUserByUsername(userLogin);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
-        }catch (InvalidTokenRequestException e){
+        } catch (InvalidTokenRequestException e) {
             System.out.println(e.getMessage());
         }
 
