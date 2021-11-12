@@ -5,10 +5,17 @@ http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-confi
 ##############################################################################
 
 #to create system user and admin
+
 #or system-controller in swagger
 http://localhost:8080/system/add
-# email = "1_USER@email.com"
-# password = "password"
+#user
+# email =  1_USER@email.com
+# password = password
+
+#admin
+# email = 1_ADMIN@email.com
+# password = password
+
 
 ##############################################################################
 
