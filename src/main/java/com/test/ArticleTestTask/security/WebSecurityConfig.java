@@ -46,7 +46,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
                 //TODO  chek all permits
 
                 .authorizeRequests().antMatchers("/api/auth/login",
-                        "/api/registration"
+                        "/api/registration",
+                        "/system/add"
                 ).permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/api/**").authenticated()

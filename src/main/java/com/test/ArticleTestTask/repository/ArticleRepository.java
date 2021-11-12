@@ -18,4 +18,10 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
     @Query("Select a from Article a WHERE a.publicationDate BETWEEN ?2 and ?1")
     List<Article> findArticlesByLastWeek(LocalDate now, LocalDate ago);
 
+    @Query("Select a from Article a")
+    List<Article> findAllArticles();
+
+    @Query("Select COUNT(a) from Article a WHERE a.publicationDate BETWEEN ?2 and ?1")
+    int findArticlesCountByLastWeek(LocalDate now, LocalDate ago);
+
 }
