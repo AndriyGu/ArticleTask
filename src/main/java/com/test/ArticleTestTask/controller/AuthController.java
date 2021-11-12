@@ -50,16 +50,4 @@ public class AuthController {
         return ResponseEntity.ok(res);
     }
 
-    @PostMapping("/check")
-    public ResponseEntity<?> checkTokenExpire(@RequestBody Map<String, String> request) {
-        Map<String, String> res = new HashMap<>();
-        try {
-            String message = authenticationService.checkExpiration(request.get("token"));
-            res.put("message", message);
-            return ResponseEntity.ok(res);
-        } catch (JwtAuthenticationException | ExpiredJwtException e) {
-            res.put("message", e.getMessage());
-            return ResponseEntity.status(401).body(res);
-        }
-    }
 }
